@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #0a0a0f;
+  --neon-purple: #a855f7;
+  --neon-cyan: #22d3ee;
+}
+
+body {
+  background: var(--bg);
+  color: #e2e8f0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Glitch effect */
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 var(--neon-cyan), -2px 0 var(--neon-purple);
+    transform: translate(0);
+  }
+  20% {
+    text-shadow: -2px 0 var(--neon-cyan), 2px 0 var(--neon-purple);
+    transform: translate(-2px, 1px);
+  }
+  40% {
+    text-shadow: 2px 0 var(--neon-cyan), -2px 0 var(--neon-purple);
+    transform: translate(2px, -1px);
+  }
+  60% {
+    text-shadow: -1px 0 var(--neon-cyan), 1px 0 var(--neon-purple);
+    transform: translate(-1px, 2px);
+  }
+  80% {
+    text-shadow: 1px 0 var(--neon-cyan), -1px 0 var(--neon-purple);
+    transform: translate(1px, -2px);
+  }
+  100% {
+    text-shadow: 2px 0 var(--neon-cyan), -2px 0 var(--neon-purple);
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-intense {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-4px, 2px);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(3px, -1px);
+  }
+  40% {
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(-2px, 3px);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(4px, -2px);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(-3px, 1px);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(2px, -3px);
+  }
+}
+
+.glitch-text {
+  animation: glitch 3s infinite;
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  color: var(--neon-cyan);
+  animation: glitch-intense 2s infinite;
+  opacity: 0.3;
+}
+
+.glitch-text::after {
+  color: var(--neon-purple);
+  animation: glitch-intense 2.5s infinite reverse;
+  opacity: 0.3;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-purple);
+  border-radius: 3px;
+}
+
+/* Textarea styling */
+textarea:focus {
+  outline: none;
+}
